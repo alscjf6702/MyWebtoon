@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>게시물 상세보기</title>
+    <link rel="stylesheet" th:href="@{/css/bootstrap.min.css}">
+
+</head>
+
+<style>
+
+    .layout{
+        width: 70%;
+        margin: 0 auto;
+        margin-top: 40px;
+        border: 1px solid black;
+
+    }
+</style>
+<body>
+<th:block th:replace="fragments/header :: header"/>
+<div class="layout">
+    <form th:action="@{/board/delete(id=${board.id})}" method="post">
+        <div class="card">
+            <h2 class="card-title"><th:block th:text="${board.title}"/></h2>
+        </div>
+            <th:block class="card-body" th:text="${board.content}"/>
+
+        <a th:if="${board.filePath != null}" th:href="@{${board.filePath}}">다운</a>
+        <div class="col-lg-6 col-sm-12 text-lg-end text-center">
+            <a type="button" th:href="@{/board/modify(id=${board.id})}" class="btn btn-primary">수정</a>
+            <button type="submit" class="btn btn-primary ">삭제</button>
+            <a type="button" th:href="@{/board/list}" class="btn btn-primary">목록</a>
+        </div>
+    </form>
+</div>
+
+
+
+</body>
+</html>

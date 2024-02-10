@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <link th:href="@{/css/bootstrap.min.css}" rel="stylesheet"/>
+</head>
+<style>
+
+    .layout{
+        width: 70%;
+        margin: 0 auto;
+        margin-top: 40px;
+    }
+
+</style>
+
+<body>
+
+<th:block th:replace="fragments/header :: header"/>
+
+<div class="layout">
+<a th:href="@{/board/list}" class="text-decoration-none text-black"> <h2>공지사항</h2></a>
+    <a class="btn btn-primary text-decoration-none" type="button" th:href="@{/board/insert}">글쓰기</a>
+    <form th:action="@{/board/list}" method="get">
+        <input type="text" id="searchKeyword" name="searchKeyword">
+        <button class="btn btn-sm btn-primary" type="submit">검색</button>
+    </form>
+
+        <table class="table table-striped table-hover">
+            <thead>
+            <tr>
+                <th scope="col">글번호</th>
+                <th scope="col">제목</th>
+                <th scope="col">작성자</th>
+                <th scope="col">조회수</th>
+            </tr>
+            </thead>
+            <tbody>
+            <tr th:each="board :  ${list}" >
+                <td th:text="${board.id}"></td>
+                <td>
+                    <a th:text="${board.title}" th:href="@{/board/detail(id=${board.id})}"></a>
+                </td>
+                <td th:text="${board.author}"></td>
+                <td th:text="${board.views}"></td>
+            </tr>
+            </tbody>
+        </table>
+    <ul class="pagination justify-content-center">
+            <a th:if="${currentPage != startPage}" class="page-link" th:href="@{/board/list(page=${currentPage -2},searchKeyword=${param.searchKeyword})}" aria-label="Previous">
+                <span aria-hidden="true">이전</span>
+            </a>
+        <th:block th:each="page : ${#numbers.sequence(startPage,endPage)}">
+            <li class="page-item"><a class="page-link" th:if="${page != currentPage}" th:href="@{/board/list(page=${page - 1},searchKeyword = ${param.searchKeyword})}" th:text="${page}"></a></li>
+            <li class="page-item"><strong class="page-link" th:if="${page == currentPage}" th:text="${page}"  ></strong></li>
+        </th:block>
+        <a th:if="${currentPage < endPage}" class="page-link" th:href="@{/board/list(page=${currentPage}, searchKeyword = ${param.searchKeyword})}" aria-label="Next">
+            <span  aria-hidden="true">다음</span>
+        </a>
+    </ul>
+    <a th:href="@{board/list(page=${page}, searchKeyword=${param.searchKeyword})}"></a>
+
+</div>
+
+
+</body>
+
+<script th:src="@{js/bootstrap.min.js}"></script>
+
+
+</html>

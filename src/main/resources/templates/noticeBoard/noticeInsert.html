@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <link rel="stylesheet" th:href="@{/css/bootstrap.min.css}">
+</head>
+<style>
+    .layout{
+        width: 70%;
+        margin: 0 auto;
+        margin-top: 40px;
+    }
+
+</style>
+<body>
+<th:block th:replace="fragments/header :: header"/>
+<div class="layout">
+    <form th:action="@{/board/insert}" method="post" class="row gy-2 gx-3 align-items-center" enctype="multipart/form-data">
+        <div class="col-auto">
+            <label th:for="title">제목</label>
+            <input type="text" class="form-control" th:id="title" th:name="title">
+        </div>
+        <div class="col-auto">
+            <label th:for="title">작성자</label>
+            <input type="text" class="form-control" th:id="author" th:name="author">
+        </div>
+        <br>
+        <div class="col-auto">
+            <label th:for="content">내용</label>
+            <div class="input-group">
+                <textarea class="form-control" th:id="content" th:name="content" cols="30" rows="10" ></textarea>
+            </div>
+            <input type="file" name="file" id="file">
+        </div>
+
+
+        <div class="col-auto">
+            <button type="submit" class="btn btn-primary">등록</button>
+            <a th:href="@{/board/list}" class="btn-primary btn">취소</a>
+        </div>
+    </form>
+</div>
+</body>
+</html>

@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org"
+      xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+
+    <th:block th:fragment="script">
+        <script th:src="@{/js/bootstrap.min.js}"></script>
+    </th:block>
+    <th:block th:fragment="css">
+        <link rel="stylesheet" th:href="@{/css/bootstrap.min.css}">
+    </th:block>
+    <link rel="stylesheet" th:href="@{/css/bootstrap.min.css}">
+</head>
+<body>
+
+<div th:replace="fragments/header :: header"></div>     <!--fragments/header경로의 th:fragment="header" 부분을 템플릿 조각으로 가져와서 사용한다의 의미-->
+
+<div layout:fragment="content">
+    안녕하심까!
+</div>
+
+다음주 수 4시
+
+<div th:replace="fragments/footer :: footer"></div>  <!--fragments/footer경로의 th:fragment="footer" 부분을 템플릿 조각으로 가져와서 사용한다의 의미-->
+
+</body>
+</html>

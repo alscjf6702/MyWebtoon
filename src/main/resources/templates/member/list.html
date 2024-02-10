@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org"
+        xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout">
+<head>
+    <meta charset="UTF-8">
+    <title>회원정보들</title>
+    <th:block th:replace="layouts/layout ::css"/>
+</head>
+<body>
+
+<div th:replace="fragments/header :: header"></div>
+
+<div class="layout">
+    <a th:href="@{/member/list}" class="text-decoration-none text-black"> <h2>회원 정보(관리자페이지)</h2></a>
+
+    <table class="table table-striped table-hover">
+        <thead>
+        <tr>
+            <th scope="col">번호</th>
+            <th scope="col">이름</th>
+            <th scope="col">아이디</th>
+            <th scope="col">이메일</th>
+            <th scope="col">핸드폰번호</th>
+        </tr>
+        </thead>
+        <tbody>
+        <tr th:each="list : ${list}">
+            <td th:text="${list.id}"></td>
+            <td><a th:href="@{/member/detail(id=${list.id})}">[[${list.userName}]]</a> </td>
+            <td th:text="${list.userId}"></td>
+            <td th:text="${list.email}"></td>
+            <td th:text="${list.phoneNumber}"></td>
+            <td><form method="post" th:action="@{/member/delete(id=${list.id})}">
+                <button type="submit" class="btn btn-danger">삭제</button>
+            </form></td>
+        </tr>
+        </tbody>
+    </table>
+
+    <a th:href="@{/member/regMember}" class="btn btn-warning">회원 가입</a>
+
+</div>
+
+
+
+<div th:replace="fragments/footer :: footer"></div>
+
+
+
+
+
+</body>
+</html>
