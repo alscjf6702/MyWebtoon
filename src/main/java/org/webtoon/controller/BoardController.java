@@ -97,8 +97,4 @@ public class BoardController {
         return "noticeBoard/message";
     }
 
-
-
-
-
 }

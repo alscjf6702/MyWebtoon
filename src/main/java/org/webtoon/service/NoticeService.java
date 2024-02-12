@@ -63,6 +63,9 @@ public class NoticeService {
 
         UUID uuid = UUID.randomUUID();
 
+
+        String originFileName = file.getOriginalFilename();
+
         String fileName = uuid + "_" + file.getOriginalFilename();
 
         File saveFile = new File(projectPath, fileName);
