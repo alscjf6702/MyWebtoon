@@ -10,14 +10,22 @@
         width: 70%;
         margin: 0 auto;
         margin-top: 40px;
+
     }
 
+    body{
+        background-color: #f2f2f2;
+    }
+
+    button{
+        margin: 0 10px 0 0;
+    }
 </style>
 <body>
 <th:block th:replace="fragments/header :: header"/>
 <div class="layout">
 
-<form th:action="@{/board/modify(id=${board.id})}" method="post" class="row gy-2 gx-3 align-items-center">
+<form th:action="@{/board/modify(id=${board.id})}" method="post" class="gy-2 gx-3 align-items-center">
     <div class="col-auto">
         <label th:for="title">제목</label>
         <input type="text" class="form-control" th:field="${board.title}" th:value="${board.title}" readonly>
@@ -35,8 +43,9 @@
     </div>
 
     <div class="col-auto">
-        <button type="submit" class="btn btn-primary">수정</button>
-        <a th:href="@{/board/detail(id=${board.id})}" class="btn-primary btn">취소</a>
+        <br>
+        <a th:href="@{/board/detail(id=${board.id})}" class="btn-primary btn float-end">취소</a>
+        <button type="submit" class="btn btn-primary float-end">수정</button>
     </div>
 </form>
 </div>

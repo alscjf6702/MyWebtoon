@@ -16,6 +16,10 @@
         border: 1px solid black;
 
     }
+
+    .buttons {
+        margin: 10px 0 0 10px;
+    }
 </style>
 <body>
 <th:block th:replace="fragments/header :: header"/>
@@ -26,16 +30,13 @@
         </div>
             <th:block class="card-body" th:text="${board.content}"/>
 
-<!--        <a th:if="${board.filePath != null}" th:href="@{${board.filePath}}">다운</a>-->
         <br>
-        <th:block th:if="${board.fileName}">
-            <img th:src="${board.filePath}" alt="ㅎㅎ">
-        </th:block>
+            <img th:src="${board.filePath}" alt="">
 
-        <div class="col-lg-6 col-sm-12 text-lg-end text-center">
-            <a type="button" th:href="@{/board/modify(id=${board.id})}" class="btn btn-primary">수정</a>
-            <button type="submit" class="btn btn-primary ">삭제</button>
-            <a type="button" th:href="@{/board/list}" class="btn btn-primary">목록</a>
+        <div class="buttons">
+            <a type="button" th:href="@{/board/list}" class="btn btn-primary buttons float-end">목록</a>
+            <button type="submit" class="btn btn-primary buttons float-end">삭제</button>
+            <a type="button" th:href="@{/board/modify(id=${board.id})}" class="btn btn-primary buttons float-end">수정</a>
         </div>
     </form>
 </div>

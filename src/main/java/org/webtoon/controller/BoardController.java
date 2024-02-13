@@ -13,10 +13,13 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.multipart.MultipartFile;
+import org.webtoon.dto.NoticeDTO;
 import org.webtoon.entity.NoticeBoard;
 import org.webtoon.service.NoticeService;
 
 import java.io.IOException;
+
+import static org.springframework.data.jpa.domain.AbstractPersistable_.id;
 
 @Controller
 @RequestMapping("/board")
@@ -51,32 +54,33 @@ public class BoardController {
 
 
     @GetMapping("/detail")
-    public String getDetail(Model model, @RequestParam("id") Long id) {
+    public String getDetail(Model model, NoticeDTO dto) {
 
-        model.addAttribute("board", noticeService.getDetail(id));
+        model.addAttribute("board", noticeService.getDetail(dto.getId()));
 
         return "noticeBoard/noticeDetail";
     }
 
     @GetMapping("/modify")
-    public String getModify(Model model, @RequestParam("id") Long id ) {
-        model.addAttribute("board", noticeService.getDetail(id));
+    public String getModify(Model model, NoticeDTO dto) {
+        model.addAttribute("board", noticeService.getDetail(dto.getId()));
         return "noticeBoard/noticeModify";
     }
 
     @PostMapping("/modify")
-    public String postModify(@RequestParam("id") Long id, @RequestParam("content") String content,Model model) {
-        noticeService.modify(id, content);
-        model.addAttribute("message", id+"번 글 수정이 완료되었습니다.");
-        model.addAttribute("searchUrl", "/board/detail?id=" + id);
+    public String postModify(NoticeDTO dto,Model model) {
+        noticeService.modify(dto.getId(), dto.getContent());
+        model.addAttribute("message", dto.getId()+"번 글 수정이 완료되었습니다.");
+        model.addAttribute("searchUrl", "/board/detail?id=" + dto.getId());
         return "noticeBoard/message";
     }
 
+
     @PostMapping("/delete")
-    public String postDelete(@RequestParam("id") Long id, Model model) {
-        noticeService.delete(id);
+    public String postDelete(NoticeDTO dto, Model model) {
+        noticeService.delete(dto.getId());
         model.addAttribute("searchUrl", "/board/list");
-        model.addAttribute("message", id + "번 글이 삭제되었습니다.");
+        model.addAttribute("message", dto.getId() + "번 글이 삭제되었습니다.");
         return "noticeBoard/message";
     }
 
@@ -87,14 +91,14 @@ public class BoardController {
     }
 
     @PostMapping("/insert")
-    public String postInsert(@RequestParam("title") String title, @RequestParam("content") String content,
-                             @RequestParam("author") String author, @RequestParam(required = false,value = "file") MultipartFile file , Model model) throws IOException {
+    public String postInsert(NoticeDTO dto,Model model) throws IOException {
 
-        noticeService.insert(title, content, author , file);
+        noticeService.insert(dto.getTitle(), dto.getContent(), dto.getAuthor() , dto.getFile());
         model.addAttribute("message", "글 작성이 완료되었습니다.");
         model.addAttribute("searchUrl", "/board/list");
 
         return "noticeBoard/message";
     }
+
 
 }

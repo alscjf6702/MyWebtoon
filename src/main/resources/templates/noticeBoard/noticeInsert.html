@@ -12,18 +12,29 @@
         margin-top: 40px;
     }
 
+    body{
+        background-color: #f2f2f2;
+    }
+
+    button {
+        margin: 0 10px 0 10px;
+    }
+
+
 </style>
 <body>
 <th:block th:replace="fragments/header :: header"/>
 <div class="layout">
-    <form th:action="@{/board/insert}" method="post" class="row gy-2 gx-3 align-items-center" enctype="multipart/form-data">
+    <form th:action="@{/board/insert}" method="post" class="gy-2 gx-3 align-items-center" enctype="multipart/form-data">
         <div class="col-auto">
             <label th:for="title">제목</label>
             <input type="text" class="form-control" th:id="title" th:name="title">
+            <br>
         </div>
         <div class="col-auto">
             <label th:for="title">작성자</label>
             <input type="text" class="form-control" th:id="author" th:name="author">
+            <br>
         </div>
         <br>
         <div class="col-auto">
@@ -31,13 +42,16 @@
             <div class="input-group">
                 <textarea class="form-control" th:id="content" th:name="content" cols="30" rows="10" ></textarea>
             </div>
+            <br>
             <input type="file" name="file" id="file">
+            <br>
         </div>
 
 
         <div class="col-auto">
-            <button type="submit" class="btn btn-primary">등록</button>
-            <a th:href="@{/board/list}" class="btn-primary btn">취소</a>
+            <br>
+            <a th:href="@{/board/list}" class="btn-primary btn float-end">취소</a>
+            <button type="submit" class="btn btn-primary float-end">등록</button>
         </div>
     </form>
 </div>

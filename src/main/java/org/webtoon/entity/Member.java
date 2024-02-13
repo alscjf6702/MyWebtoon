@@ -2,6 +2,7 @@ package org.webtoon.entity;
 
 import jakarta.persistence.*;
 import jakarta.validation.constraints.Email;
+import jakarta.validation.constraints.Pattern;
 import lombok.*;
 import org.webtoon.dto.MemberDTO;
 
@@ -33,7 +34,11 @@ public class Member extends BaseEntity {
     private String email;
 
     @Column(nullable = false)
+    @Pattern(regexp = "^\\d{2,3}-\\d{3,4}-\\d{4}$", message = "전화번호 양식을 입력해주세요. 01x-xxxx-xxxx")
     private String phoneNumber;
+
+    @Column(columnDefinition = "integer default 0")
+    private Integer admin;
 
     public static Member fromDto(MemberDTO dto) {
         return Member.builder()
@@ -43,6 +48,7 @@ public class Member extends BaseEntity {
                 .password(dto.getPassword())
                 .email(dto.getEmail())
                 .phoneNumber(dto.getPhoneNumber())
+                .admin(dto.getAdmin())
                 .build();
     }
 

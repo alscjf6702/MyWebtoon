@@ -1,8 +1,11 @@
 package org.webtoon.controller;
 
+import jakarta.validation.Valid;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.validation.BindingResult;
+import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -10,6 +13,8 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.webtoon.dto.MemberDTO;
 import org.webtoon.entity.Member;
 import org.webtoon.service.MemberService;
+
+import javax.naming.Binding;
 
 @Controller
 @RequestMapping("/member")
@@ -19,7 +24,7 @@ public class MemberController {
     private final MemberService memberService;
 
     @PostMapping("/regMember")
-    public String regMember(MemberDTO dto, Model model) {
+    public String regMember(Model model, @Valid MemberDTO dto, BindingResult bindingResult) {
 
         memberService.regMember(dto);
 
