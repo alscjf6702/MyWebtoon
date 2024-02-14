@@ -1,6 +1,7 @@
 package org.webtoon.service;
 
 import lombok.RequiredArgsConstructor;
+import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 import org.webtoon.dto.MemberDTO;
 import org.webtoon.entity.Member;
@@ -13,24 +14,14 @@ import java.util.List;
 public class MemberService {
 
     private final MemberRepository memberRepository;
-//    public void regMember(String userId, String userName, String password, String email, String phoneNumber) {
-//
-//        Member member = Member.builder()
-//                .userId(userId)
-//                .userName(userName)
-//                .password(password)
-//                .email(email)
-//                .phoneNumber(phoneNumber)
-//                .build();
-//
-//        memberRepository.save(member);
-//    }
+
+    private final PasswordEncoder passwordEncoder;
 
     public void regMember(MemberDTO dto){
 
         Member member = Member.builder()
                 .userId(dto.getUserId())
-                .password(dto.getPassword())
+                .password(passwordEncoder.encode(dto.getPassword()))
                 .email(dto.getEmail())
                 .phoneNumber(dto.getPhoneNumber())
                 .userName(dto.getUserName())
@@ -67,9 +58,9 @@ public class MemberService {
     }
 
 
+    public Member findByUserId(String userId) {
 
-
-
-
+        return memberRepository.findByUserId(userId);
+    }
 }
 

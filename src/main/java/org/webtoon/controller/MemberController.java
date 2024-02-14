@@ -2,6 +2,7 @@ package org.webtoon.controller;
 
 import jakarta.validation.Valid;
 import lombok.RequiredArgsConstructor;
+import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
@@ -23,21 +24,33 @@ public class MemberController {
 
     private final MemberService memberService;
 
+    @GetMapping("/regMember")
+    public String getRegMember(MemberDTO dto) {
+        return "/member/regMember";
+    }
+
     @PostMapping("/regMember")
-    public String regMember(Model model, @Valid MemberDTO dto, BindingResult bindingResult) {
+    public String regMember(@Valid MemberDTO dto, BindingResult bindingResult) {
+
+        if (bindingResult.hasErrors()) {
+            return "/member/regMember";
+        }
+
+        Member getUserId = memberService.findByUserId(dto.getUserId());
+
+        if (getUserId != null && dto.getUserId().equals(getUserId.getUserId())) {
+            bindingResult.rejectValue("userId","existId","이미 사용 중인 ID입니다.");
+            return "/member/regMember";
+        }
 
         memberService.regMember(dto);
 
-        model.addAttribute("message", dto.getUserName() + "님의 회원가입이 완료되었습니다.");
 
         return "redirect:/member/list";
 
     }
 
-    @GetMapping("/regMember")
-    public String getRegMember() {
-        return "/member/regMember";
-    }
+
 
     @GetMapping("/list")
     public String memberList(Model model) {
