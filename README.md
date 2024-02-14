@@ -23,4 +23,6 @@
 ![image](https://github.com/alscjf6702/MyWebtoonProject/assets/143998544/3c3b7841-96f2-40ce-bc90-16308e1737f9)
 ![image](https://github.com/alscjf6702/MyWebtoonProject/assets/143998544/b8129c41-5a20-4da7-87d9-47be5ace8650)
 
-
+회원 정보( 관리자 페이지 , 회원 삭제, 수정 가능)
+![image](https://github.com/alscjf6702/MyWebtoonProject/assets/143998544/00748192-6ecc-4e34-9c1a-833cb94edd59)
+![image](https://github.com/alscjf6702/MyWebtoonProject/assets/143998544/93a95ba2-08b1-49b8-b2e0-986837c6dc19)
