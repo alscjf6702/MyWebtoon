@@ -1,7 +1,8 @@
 프로젝트 진행 중..
 
 2024-02-09 ~ ing
-
+springboot 3.2.2
+JDK 17
 
    <img src="https://img.shields.io/badge/springboot-6DB33F?style=plastic&logo=springboot&logoColor=white"/>
        <img src="https://img.shields.io/badge/css3-1572B6?style=plastic&logo=css3&logoColor=white"/>
