@@ -8,6 +8,7 @@ import org.webtoon.entity.Member;
 import org.webtoon.repository.MemberRepository;
 
 import java.util.List;
+import java.util.Optional;
 
 @Service
 @RequiredArgsConstructor

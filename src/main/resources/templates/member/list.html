@@ -31,7 +31,7 @@
             <td th:text="${list.email}"></td>
             <td th:text="${list.phoneNumber}"></td>
             <td><form method="post" th:action="@{/member/delete(id=${list.id})}">
-                <button type="submit" class="btn btn-danger">삭제</button>
+                <button type="submit" id="deleteBtn" class="btn btn-danger">삭제</button>
             </form></td>
         </tr>
         </tbody>
@@ -42,12 +42,13 @@
 </div>
 
 
-
 <div th:replace="fragments/footer :: footer"></div>
 
 
 
+<script>
 
+</script>
 
 </body>
 </html>

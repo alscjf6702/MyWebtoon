@@ -1,5 +1,6 @@
 package org.webtoon.controller;
 
+import jakarta.validation.Valid;
 import lombok.RequiredArgsConstructor;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
@@ -8,6 +9,7 @@ import org.springframework.data.jpa.repository.config.EnableJpaAuditing;
 import org.springframework.data.web.PageableDefault;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -85,13 +87,16 @@ public class BoardController {
     }
 
     @GetMapping("/insert")
-    public String getInsert(){
+    public String getInsert(NoticeDTO dto){
 
         return "noticeBoard/noticeInsert";
     }
 
     @PostMapping("/insert")
-    public String postInsert(NoticeDTO dto,Model model) throws IOException {
+    public String postInsert(Model model,@Valid NoticeDTO dto, BindingResult bindingResult) throws IOException {
+        if (bindingResult.hasErrors()) {
+            return "noticeBoard/noticeInsert";
+        }
 
         noticeService.insert(dto.getTitle(), dto.getContent(), dto.getAuthor() , dto.getFile());
         model.addAttribute("message", "글 작성이 완료되었습니다.");

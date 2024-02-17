@@ -16,6 +16,7 @@ import org.webtoon.entity.Member;
 import org.webtoon.service.MemberService;
 
 import javax.naming.Binding;
+import java.util.Optional;
 
 @Controller
 @RequestMapping("/member")
@@ -38,7 +39,7 @@ public class MemberController {
 
         Member getUserId = memberService.findByUserId(dto.getUserId());
 
-        if (getUserId != null && dto.getUserId().equals(getUserId.getUserId())) {
+        if (getUserId != null) {
             bindingResult.rejectValue("userId","existId","이미 사용 중인 ID입니다.");
             return "/member/regMember";
         }
@@ -48,6 +49,12 @@ public class MemberController {
 
         return "redirect:/member/list";
 
+    }
+
+    @GetMapping("/login")
+    public String login(){
+        System.out.println("로그인 시도");
+        return "/member/login_form";
     }
 
 
