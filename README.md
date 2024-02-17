@@ -22,10 +22,15 @@ JDK 17
 ![image](https://github.com/alscjf6702/MyWebtoonProject/assets/143998544/10e99944-f8ee-4dc2-b23f-0100f46d963d)
 ![image](https://github.com/alscjf6702/MyWebtoonProject/assets/143998544/c4176c46-aa5c-4805-b36a-0b6b1a5a52f4)
 ![image](https://github.com/alscjf6702/MyWebtoonProject/assets/143998544/879595a1-6634-4bb7-a2e9-bb2ffee9f317)
-회원가입( Id중복 여부 및 기타 유효성 검사 진행)
+## 회원가입( Id중복 여부 및 기타 유효성 검사 진행)
 ![image](https://github.com/alscjf6702/MyWebtoonProject/assets/143998544/3c3b7841-96f2-40ce-bc90-16308e1737f9)
 ![image](https://github.com/alscjf6702/MyWebtoonProject/assets/143998544/b8129c41-5a20-4da7-87d9-47be5ace8650)
 
-회원 정보( 관리자 페이지 , 회원 삭제, 수정 가능)
+## 회원 정보( 관리자 페이지 , 회원 삭제, 수정 가능)
 ![image](https://github.com/alscjf6702/MyWebtoonProject/assets/143998544/00748192-6ecc-4e34-9c1a-833cb94edd59)
 ![image](https://github.com/alscjf6702/MyWebtoonProject/assets/143998544/93a95ba2-08b1-49b8-b2e0-986837c6dc19)
+
+## 로그인 (로그인,로그아웃 기능(로그아웃 시 세션 삭제))
+![image](https://github.com/alscjf6702/MyWebtoonProject/assets/143998544/2bb0c1e1-1456-47ee-9102-1db074ca202b)
+![image](https://github.com/alscjf6702/MyWebtoonProject/assets/143998544/7571efff-16e4-4ce9-a45e-3c2bfd9db2da)
+
