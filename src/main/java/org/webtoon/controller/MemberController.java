@@ -40,7 +40,7 @@ public class MemberController {
         Member getUserId = memberService.findByUserId(dto.getUserId());
 
         if (getUserId != null) {
-            bindingResult.rejectValue("userId","existId","이미 사용 중인 ID입니다.");
+            bindingResult.rejectValue("userId", "existId", "이미 사용 중인 ID입니다.");
             return "/member/regMember";
         }
 
@@ -52,11 +52,10 @@ public class MemberController {
     }
 
     @GetMapping("/login")
-    public String login(){
+    public String login() {
         System.out.println("로그인 시도");
         return "/member/login_form";
     }
-
 
 
     @GetMapping("/list")
@@ -67,14 +66,14 @@ public class MemberController {
     }
 
     @PostMapping("/delete")
-    public String deleteMember(@RequestParam("id") Long id,Model model) {
+    public String deleteMember(@RequestParam("id") Long id, Model model) {
         memberService.deleteMember(id);
-        model.addAttribute("message", id+"번 아이디가 삭제되었습니다.");
+        model.addAttribute("message", id + "번 아이디가 삭제되었습니다.");
         return "redirect:/member/list";
     }
 
     @GetMapping("/update")
-    public String getUpdateMember(Long id, Model model){
+    public String getUpdateMember(Long id, Model model) {
         Member member = memberService.getMember(id);
 
         model.addAttribute("member", member);
@@ -83,12 +82,12 @@ public class MemberController {
     }
 
     @PostMapping("/update")
-    public String updateMember(MemberDTO dto,Model model){
+    public String updateMember(MemberDTO dto, Model model) {
         try {
             memberService.updateMember(dto);
         } catch (RuntimeException e) {
             model.addAttribute("message", "오류입니다.");
-            return "redirect:/member/update/"+dto.getId();
+            return "redirect:/member/update/" + dto.getId();
         }
 
 
@@ -100,6 +99,36 @@ public class MemberController {
         Member member = memberService.getMember(id);
         model.addAttribute("member", member);
         return "/member/detail";
+    }
+
+    @GetMapping("/memberFind")
+    public String getMemberFind() {
+        return "/member/memberFind";
+    }
+
+
+
+    @PostMapping("/memberFind")
+    public String postMemberFind(@RequestParam("email") String email, @RequestParam("phoneNumber") String phoneNumber, Model model) {
+
+        Member byEmail = memberService.findByEmail(email);
+        Member byPhoneNumber = memberService.findByPhoneNumber(phoneNumber);
+
+        if (byEmail == byPhoneNumber) {
+            model.addAttribute("member", byEmail);
+            return "/member/memberFound";
+        } else {
+            model.addAttribute("message", "해당하는 정보가 없습니다.");
+            return "redirect:/member/memberFind";
+        }
+    }
+
+    @PostMapping("/resetPassword")
+    public String postResetPassword(@RequestParam("userId") String userId, @RequestParam("password") String password) {
+
+        memberService.updateMemberByUserId(userId, password);
+
+        return "/member/login_form";
     }
 }
 

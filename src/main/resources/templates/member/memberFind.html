@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <th:block th:replace="layouts/layout::css"/>
+
+</head>
+<body>
+<th:block th:replace="fragments/header::header"/>
+<form th:action="@{/member/memberFind}" method="post">
+
+    <div>
+    <label th:for="email">이메일</label>
+    <input type="email" th:name="email">
+    </div>
+
+    <div>
+        <label th:for="phoneNumber">전화번호</label>
+        <input type="text" th:name="phoneNumber">
+    </div>
+
+    <th:block th:if="${message}">
+    <th:block th:text="${message}"></th:block>
+    <a th:href="@{member/regMember}">회원가입</a>
+    </th:block>
+
+    <button type="submit">아이디,비밀번호 찾기</button>
+</form>
+
+</body>
+</html>

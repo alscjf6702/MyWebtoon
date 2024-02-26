@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html xmlns:th="http://www.thymeleaf.org">
+<html xmlns:th="http://www.thymeleaf.org" xmlns:sec="http://www.w3.org/1999/xhtml">
 
 <head>
     <meta charset="UTF-8">
@@ -38,21 +38,26 @@
                 <th scope="col">글번호</th>
                 <th scope="col">제목</th>
                 <th scope="col">작성자</th>
+                <th scope="col">작성일</th>
                 <th scope="col">조회수</th>
             </tr>
             </thead>
             <tbody>
             <tr th:each="board :  ${list}" >
+
                 <td th:text="${board.id}"></td>
                 <td>
                     <a th:text="${board.title}" th:href="@{/board/detail(id=${board.id})}"></a>
                 </td>
                 <td th:text="${board.author}"></td>
+                <td th:text="${#temporals.format(board.regDate, 'yyyy-MM-dd HH:mm')}"></td>
                 <td th:text="${board.views}"></td>
             </tr>
             </tbody>
         </table>
+    <th:block th:if="${#authentication.getName()=='admin'}">
     <a class="btn btn-primary text-decoration-none write-btn float-end" type="button" th:href="@{/board/insert}">글쓰기</a>
+    </th:block>
     <ul class="pagination justify-content-center">
         <a th:if="${currentPage != startPage}" class="page-link" th:href="@{/board/list(page=${currentPage -2},searchKeyword=${param.searchKeyword})}" aria-label="Previous">
                 <span aria-hidden="true">이전</span>
@@ -66,7 +71,6 @@
         </a>
     </ul>
 
-<!--    <a th:href="@{board/list(page=${page}, searchKeyword=${param.searchKeyword})}"></a>-->
 </div>
 
 

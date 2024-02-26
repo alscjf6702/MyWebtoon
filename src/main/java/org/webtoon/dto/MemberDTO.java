@@ -35,7 +35,8 @@ public class MemberDTO {
     @Pattern(regexp = "^\\d{2,3}-\\d{3,4}-\\d{4}$", message = "전화번호 양식을 지켜주세요. 01x-xxx(x)-xxxx")
     private String phoneNumber;
 
-    private Integer admin;
+
+
 
     public MemberDTO toDto(Member member) {
         MemberDTO dto = new MemberDTO();
@@ -45,7 +46,6 @@ public class MemberDTO {
         dto.setPassword(member.getPassword());
         dto.setEmail(member.getEmail());
         dto.setPhoneNumber(member.getPhoneNumber());
-        dto.setAdmin(member.getAdmin());
         return dto;
     }
 

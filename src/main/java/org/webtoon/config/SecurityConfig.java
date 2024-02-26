@@ -19,14 +19,15 @@ public class SecurityConfig {
     @Bean
     SecurityFilterChain filterChain(HttpSecurity http) throws Exception {
         http.authorizeHttpRequests(auth -> auth
-                .requestMatchers(new AntPathRequestMatcher("/**")).permitAll())
+                        .requestMatchers(new AntPathRequestMatcher("/member/list")).hasRole("ADMIN")
+                        .requestMatchers(new AntPathRequestMatcher("/**")).permitAll())
 
                 .csrf(AbstractHttpConfigurer::disable)
 
             .formLogin(login ->
                     login.loginPage("/member/login")
                             .usernameParameter("userId")
-                            .defaultSuccessUrl("/member/list"))
+                            .defaultSuccessUrl("/board/list"))
                 .logout(logout -> logout.logoutRequestMatcher(new AntPathRequestMatcher("/member/logout"))
                         .logoutSuccessUrl("/member/login")
                         .invalidateHttpSession(true)    //로그아웃 시 생성되었던 세션삭제

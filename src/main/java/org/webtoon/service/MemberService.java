@@ -8,7 +8,6 @@ import org.webtoon.entity.Member;
 import org.webtoon.repository.MemberRepository;
 
 import java.util.List;
-import java.util.Optional;
 
 @Service
 @RequiredArgsConstructor
@@ -30,6 +29,15 @@ public class MemberService {
 
         memberRepository.save(member);
 
+    }
+
+    public Member getUser(String userId) throws Exception {
+        Member member = this.memberRepository.findByUserId(userId);
+        if (member != null) {
+            return member;
+        }else{
+            throw new Exception("사용자를 찾을 수 없습니다.");
+        }
     }
 
     public List<Member> memberList(){
@@ -62,6 +70,23 @@ public class MemberService {
     public Member findByUserId(String userId) {
 
         return memberRepository.findByUserId(userId);
+    }
+
+    public Member findByEmail(String email) {
+        return memberRepository.findByEmail(email);
+    }
+    public Member findByPhoneNumber(String phoneNumber) {
+        return memberRepository.findByPhoneNumber(phoneNumber);
+    }
+
+    public void updateMemberByUserId(String userId,String password) {
+
+        if (userId != null) {
+            memberRepository.updateMemberByUserId(userId,passwordEncoder.encode(password));
+        }else {
+            throw new RuntimeException("userID가 일치하지 않습니다.");
+        }
+
     }
 }
 

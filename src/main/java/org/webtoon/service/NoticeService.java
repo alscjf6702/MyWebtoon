@@ -6,7 +6,9 @@ import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.multipart.MultipartFile;
+import org.webtoon.entity.Member;
 import org.webtoon.entity.NoticeBoard;
+import org.webtoon.repository.MemberRepository;
 import org.webtoon.repository.NoticeRepository;
 
 import java.io.File;
@@ -21,6 +23,8 @@ import java.util.UUID;
 public class NoticeService {
 
     private final NoticeRepository noticeRepository;
+
+    private final MemberRepository memberRepository;
     private NoticeBoard noticeBoard;
     private Pageable pageable;
     public Page<NoticeBoard> getList(Pageable pageable) {
@@ -57,6 +61,42 @@ public class NoticeService {
         noticeRepository.deleteById(id);
     }
 
+//    public void insert(String title, String content, String author, MultipartFile file) throws IOException {
+//
+//        String projectPath = System.getProperty("user.dir") + "\\src\\main\\resources\\static\\files";
+//
+//        UUID uuid = UUID.randomUUID();
+//
+//
+//        String originFileName = file.getOriginalFilename();
+//
+//        String fileName = uuid + "_" + file.getOriginalFilename();
+//
+//        File saveFile = new File(projectPath, fileName);
+//
+//        file.transferTo(saveFile);
+//
+//        NoticeBoard noticeBoard = null;
+//
+//        if (file != null) {
+//            noticeBoard = NoticeBoard.builder()
+//                    .fileName(fileName)
+//                    .filePath("/files/" + fileName)
+//                    .title(title)
+//                    .content(content)
+//                    .author(author)
+//                    .build();
+//        }else {
+//            noticeBoard = NoticeBoard.builder()
+//                    .title(title)
+//                    .content(content)
+//                    .author(author)
+//                    .build();
+//        }
+//
+//        noticeRepository.save(noticeBoard);
+//    }
+
     public void insert(String title, String content, String author, MultipartFile file) throws IOException {
 
         String projectPath = System.getProperty("user.dir") + "\\src\\main\\resources\\static\\files";
@@ -67,12 +107,13 @@ public class NoticeService {
         String originFileName = file.getOriginalFilename();
 
         String fileName = uuid + "_" + file.getOriginalFilename();
-
         File saveFile = new File(projectPath, fileName);
 
         file.transferTo(saveFile);
 
         NoticeBoard noticeBoard = null;
+
+
 
         if (file != null) {
             noticeBoard = NoticeBoard.builder()
@@ -92,6 +133,7 @@ public class NoticeService {
 
         noticeRepository.save(noticeBoard);
     }
+
 
 
 }

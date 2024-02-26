@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <th:block th:replace="layouts/layout::css"/>
+</head>
+<body>
+
+<th:block th:replace="fragments/header :: header"/>
+
+
+<form th:action="@{/member/resetPassword}" method="post">
+    아이디 :
+    <input type="text" th:value="${member.getUserId()}" th:name="userId" readonly>
+    <label th:for="password">비밀번호 재설정 : </label>
+    <input type="text" th:name="password">
+    <br>
+    <br>
+    <br>
+    <button type="submit" class="btn btn-primary">재설정</button>
+    <a th:href="@{member.login}" class="btn btn-primary">로그인</a>
+</form>
+
+</body>
+</html>

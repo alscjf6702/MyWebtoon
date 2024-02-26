@@ -16,10 +16,13 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.multipart.MultipartFile;
 import org.webtoon.dto.NoticeDTO;
+import org.webtoon.entity.Member;
 import org.webtoon.entity.NoticeBoard;
+import org.webtoon.service.MemberService;
 import org.webtoon.service.NoticeService;
 
 import java.io.IOException;
+import java.security.Principal;
 
 import static org.springframework.data.jpa.domain.AbstractPersistable_.id;
 
@@ -29,6 +32,8 @@ import static org.springframework.data.jpa.domain.AbstractPersistable_.id;
 public class BoardController {
 
     private final NoticeService noticeService;
+
+    private final MemberService memberService;
 
     @GetMapping("/list")
     public String list(Model model,
@@ -87,18 +92,21 @@ public class BoardController {
     }
 
     @GetMapping("/insert")
-    public String getInsert(NoticeDTO dto){
+    public String getInsert(NoticeDTO dto, Principal principal){
 
         return "noticeBoard/noticeInsert";
     }
 
     @PostMapping("/insert")
-    public String postInsert(Model model,@Valid NoticeDTO dto, BindingResult bindingResult) throws IOException {
+    public String postInsert(Model model,@Valid NoticeDTO dto, BindingResult bindingResult) throws Exception {
+
         if (bindingResult.hasErrors()) {
             return "noticeBoard/noticeInsert";
         }
 
+
         noticeService.insert(dto.getTitle(), dto.getContent(), dto.getAuthor() , dto.getFile());
+
         model.addAttribute("message", "글 작성이 완료되었습니다.");
         model.addAttribute("searchUrl", "/board/list");
 

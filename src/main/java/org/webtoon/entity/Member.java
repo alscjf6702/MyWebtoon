@@ -4,6 +4,7 @@ import jakarta.persistence.*;
 import jakarta.validation.constraints.Email;
 import jakarta.validation.constraints.Pattern;
 import lombok.*;
+import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.webtoon.dto.MemberDTO;
 
@@ -37,9 +38,6 @@ public class Member extends BaseEntity {
     @Column(nullable = false)
     private String phoneNumber;
 
-    @Column(columnDefinition = "integer default 0")
-    private Integer admin;
-
     public static Member fromDto(MemberDTO dto) {
         return Member.builder()
                 .id(dto.getId())
@@ -48,13 +46,14 @@ public class Member extends BaseEntity {
                 .password(dto.getPassword())
                 .email(dto.getEmail())
                 .phoneNumber(dto.getPhoneNumber())
-                .admin(dto.getAdmin())
                 .build();
     }
 
     public void change(MemberDTO dto) {
+        PasswordEncoder passwordEncoder = new BCryptPasswordEncoder();
+
         this.userName = dto.getUserName();
-        this.password = dto.getPassword();
+        this.password = passwordEncoder.encode(dto.getPassword());
         this.email = dto.getEmail();
         this.phoneNumber = dto.getPhoneNumber();
     }

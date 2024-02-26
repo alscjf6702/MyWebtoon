@@ -6,6 +6,7 @@ import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
 import org.springframework.web.multipart.MultipartFile;
+import org.webtoon.entity.Member;
 import org.webtoon.entity.NoticeBoard;
 
 import java.time.LocalDateTime;
@@ -33,14 +34,5 @@ public class NoticeDTO {
 
     private MultipartFile file;
 
-
-    public NoticeBoard DtoToEntity() {
-        return NoticeBoard.builder()
-                .author(this.author)
-                .content(this.content)
-                .views(this.views)
-                .title(this.title)
-                .build();
-    }
 
 }

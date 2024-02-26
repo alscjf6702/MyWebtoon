@@ -38,15 +38,15 @@ class NoticeRepositoryTests {
 //            log.info(result.getId()+"번 글이 등록되었습니다.");
 //        }
 
-        IntStream.range(1, 100).forEach(i->{
-            NoticeBoard board = NoticeBoard.builder()
-                    .content("내용" + i)
-                    .author("작성자" + i)
-                    .title("제목" + i)
-                    .build();
-            NoticeBoard result = noticeRepository.save(board);
-            log.info(result.getId()+"번 글이 등록되었다.");
-        });
+//        IntStream.range(1, 100).forEach(i->{
+//            NoticeBoard board = NoticeBoard.builder()
+//                    .content("내용" + i)
+//                    .author("작성자" + i)
+//                    .title("제목" + i)
+//                    .build();
+//            NoticeBoard result = noticeRepository.save(board);
+//            log.info(result.getId()+"번 글이 등록되었다.");
+//        });
     }
 
     @Test

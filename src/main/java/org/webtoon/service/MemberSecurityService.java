@@ -1,4 +1,4 @@
-package org.webtoon.repository;
+package org.webtoon.service;
 
 import lombok.RequiredArgsConstructor;
 import org.springframework.security.core.GrantedAuthority;
@@ -9,6 +9,7 @@ import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.security.core.userdetails.UsernameNotFoundException;
 import org.springframework.stereotype.Service;
 import org.webtoon.entity.Member;
+import org.webtoon.repository.MemberRepository;
 import org.webtoon.role.MemberRole;
 import org.webtoon.service.MemberService;
 

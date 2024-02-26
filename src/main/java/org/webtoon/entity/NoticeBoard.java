@@ -26,7 +26,7 @@ public class NoticeBoard extends BaseEntity {
     private String content;     //내용
 
     @NotBlank(message = "작성자를 입력해주세요.")
-    @Column(name = "author", nullable = false  , length = 50)
+    @Column(name = "author", nullable = true, length = 50)
     private String author;      //작성자
 
     @Column(name = "views" ,nullable = false, columnDefinition = "integer default 0")
