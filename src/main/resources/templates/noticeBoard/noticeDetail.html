@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<html lang="en" xmlns:th="http://www.thymeleaf.org" xmlns:sec="http://www.w3.org/1999/xhtml">
 <head>
     <meta charset="UTF-8">
     <title>게시물 상세보기</title>
@@ -35,8 +35,8 @@
 
         <div class="buttons">
             <a type="button" th:href="@{/board/list}" class="btn btn-primary buttons float-end">목록</a>
-            <button type="submit" class="btn btn-primary buttons float-end">삭제</button>
-            <a type="button" th:href="@{/board/modify(id=${board.id})}" class="btn btn-primary buttons float-end">수정</a>
+            <button sec:authorize="hasRole('ADMIN')" type="submit" class="btn btn-primary buttons float-end">삭제</button>
+            <a type="button" sec:authorize="hasRole('ADMIN')" th:href="@{/board/modify(id=${board.id})}" class="btn btn-primary buttons float-end">수정</a>
         </div>
     </form>
 </div>

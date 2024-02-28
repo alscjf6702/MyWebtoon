@@ -55,7 +55,7 @@
             </tr>
             </tbody>
         </table>
-    <th:block th:if="${#authentication.getName()=='admin'}">
+    <th:block sec:authorize="hasRole('ADMIN')">
     <a class="btn btn-primary text-decoration-none write-btn float-end" type="button" th:href="@{/board/insert}">글쓰기</a>
     </th:block>
     <ul class="pagination justify-content-center">

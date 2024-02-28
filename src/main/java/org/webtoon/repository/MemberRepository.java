@@ -21,6 +21,8 @@ public interface MemberRepository extends JpaRepository<Member, Long> {
     Member findByPhoneNumber(String phoneNumber);
 
 
+
+
     @Query("update Member set password=:password where userId=:userId")
     @Modifying
     @Transactional

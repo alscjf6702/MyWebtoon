@@ -2,6 +2,8 @@ package org.webtoon.controller;
 
 import jakarta.validation.Valid;
 import lombok.RequiredArgsConstructor;
+import org.springframework.security.core.Authentication;
+import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -107,7 +109,6 @@ public class MemberController {
     }
 
 
-
     @PostMapping("/memberFind")
     public String postMemberFind(@RequestParam("email") String email, @RequestParam("phoneNumber") String phoneNumber, Model model) {
 
@@ -129,6 +130,30 @@ public class MemberController {
         memberService.updateMemberByUserId(userId, password);
 
         return "/member/login_form";
+    }
+
+    @GetMapping("/myInfo")
+    public String myInfo(Model model) {
+        Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
+        String userId = authentication.getName();
+        Member member = memberService.findByUserId(userId);
+        model.addAttribute("member", member);
+
+        return "/member/myInfo";
+    }
+
+    @PostMapping("/updateInfo")
+    public String updateMyInfo(@Valid MemberDTO dto, BindingResult bindingResult) {
+
+
+        if (bindingResult.hasErrors()) {
+            return "/member/myInfo";
+        }
+
+        memberService.updateMember(dto);
+
+        return "redirect:/board/list";
+
     }
 }
 

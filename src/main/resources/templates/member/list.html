@@ -1,6 +1,7 @@
 <!DOCTYPE html>
 <html xmlns:th="http://www.thymeleaf.org"
-        xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout">
+        xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+      xmlns:sec="http://www.w3.org/1999/xhtml">
 <head>
     <meta charset="UTF-8">
     <title>회원정보들</title>
@@ -37,7 +38,7 @@
         </tbody>
     </table>
 
-    <a th:href="@{/member/regMember}" class="btn btn-warning me-3">회원 가입</a>
+    <a sec:authorize="!isAuthenticated()" th:href="@{/member/regMember}" class="btn btn-warning me-3">회원 가입</a>
 
 </div>
 

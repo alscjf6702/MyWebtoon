@@ -53,7 +53,7 @@ public class Member extends BaseEntity {
         PasswordEncoder passwordEncoder = new BCryptPasswordEncoder();
 
         this.userName = dto.getUserName();
-        this.password = passwordEncoder.encode(dto.getPassword());
+//        this.password = passwordEncoder.encode(dto.getPassword());
         this.email = dto.getEmail();
         this.phoneNumber = dto.getPhoneNumber();
     }
