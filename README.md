@@ -29,3 +29,13 @@ JDK 17
 ![image](https://github.com/alscjf6702/MyWebtoonProject/assets/143998544/2bb0c1e1-1456-47ee-9102-1db074ca202b)
 ![image](https://github.com/alscjf6702/MyWebtoonProject/assets/143998544/7571efff-16e4-4ce9-a45e-3c2bfd9db2da)
 
+## 비밀번호 재설정( 가입시 입력한 email과 전화번호를 입력하여 비밀번호 재설정)
+![image](https://github.com/alscjf6702/MyWebtoonProject/assets/143998544/330e1f09-2805-4860-a0d9-28a879d38402)
+![image](https://github.com/alscjf6702/MyWebtoonProject/assets/143998544/cdfd91c6-6a6e-4ee9-a801-e9490e1c615e)
+![image](https://github.com/alscjf6702/MyWebtoonProject/assets/143998544/caa099e1-6e68-4022-bf77-334ac3e01c44)
+![image](https://github.com/alscjf6702/MyWebtoonProject/assets/143998544/8181fa77-cfc6-43d4-8bbe-a0327fa506a8)
+![image](https://github.com/alscjf6702/MyWebtoonProject/assets/143998544/86671373-2cd2-45b7-aeec-9cda441718c3)
+![image](https://github.com/alscjf6702/MyWebtoonProject/assets/143998544/8b934203-67b1-4e74-b4ab-f22941b7a98a)
+
+
+
