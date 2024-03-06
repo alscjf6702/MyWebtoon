@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org" xmlns:sec="http://www.thymeleaf.org/extras/spring-security">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+
+    <th:block th:replace="layouts/layout :: css"/>
+
+
+
+</head>
+<body>
+<th:block th:replace="fragments/header :: header"/>
+
+<div class="text-sm-center">
+    <form th:action="@{/webtoon/delete(id=${webtoon.id})}" method="post">
+    제목 : [[${webtoon.title}]] <br>
+    <th:block th:if="${webtoon.content != null}">
+        내용 : [[${webtoon.content}]] <br></th:block>
+    작성자 : [[${webtoon.author}]] <br>
+    <div sec:authorize="isAuthenticated()">
+    <th:block th:if="${#authentication.principal.username == webtoon.author}">
+        <a th:href="@{/webtoon/update(id=${webtoon.id})}" class="btn btn-primary">수정</a>
+    </th:block>
+    <th:block th:if="${#authentication.principal.username == webtoon.author || #authentication.principal.username == 'admin'}">
+
+        <button type="submit" class="btn btn-primary">삭제</button>
+    </th:block>
+    </div>
+
+    <th:block th:if="${webtoon.fileName}" >
+        <img th:src="${webtoon.filePath}" alt="웹툰">
+    </th:block>
+    </form>
+</div>
+
+
+</body>
+</html>

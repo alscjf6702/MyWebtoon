@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org"    xmlns:sec="http://www.thymeleaf.org/extras/spring-security">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <th:block th:replace="layouts/layout::css"/>
+    <link th:href="@{/css/bootstrap.min.css}" rel="stylesheet"/>
+
+</head>
+<style>
+    .layout{
+        width: 70%;
+        margin: 0 auto;
+        margin-top: 40px;
+    }
+
+    .write-btn{
+        margin-bottom: 10px;
+    }
+
+    img{
+        width: 150px;
+        height: 130px;
+    }
+
+    .border{
+        border: 1px solid black;
+        padding: 10px;
+        background-color: #f2f2f2;
+        border-radius: 5px;
+        box-shadow: 2px 2px 5px rgba(0, 0, 0, 0.2);
+    }
+
+
+
+</style>
+<body>
+
+    <th:block th:replace="fragments/header :: header"/>
+
+    <h2 class="text-sm-center mt-4">웹툰</h2>
+
+    <div class="container text-center">
+        <div class="row">
+            <div th:each="list : ${webtoon}" class="col-md-2 my-4 py-3 mx-3 border">
+                <a th:href="@{/webtoon/detail(id=${list.id})}" class="text-decoration-none d-block">
+                    <th:block th:if="${list.fileName != null}">
+                        <img th:src="${list.filePath}" th:alt="${list.title}">
+                    </th:block>
+                    <th:block th:if="${list.fileName == null}">
+                        <img src="/files/noImg.jpg" alt="그림이 없는 웹툰">
+                    </th:block>
+                    <div class="text-black align-bottom ">
+                        [[${list.title}]]
+                    </div>
+                    <div class="font-monospace text-sm-center">
+                        조회수 : [[${list.views}]]
+                    </div>
+                </a>
+            </div>
+        </div>
+        <ul class="pagination justify-content-center">
+            <a th:if="${currentPage != startPage}" class="page-link" th:href="@{/webtoon/list(page=${currentPage -2},searchKeyword=${param.searchKeyword})}" aria-label="Previous">
+                <span aria-hidden="true">이전</span>
+            </a>
+            <th:block th:each="page : ${#numbers.sequence(startPage,endPage)}">
+                <li class="page-item"><a class="page-link" th:if="${page != currentPage}" th:href="@{/webtoon/list(page=${page - 1},searchKeyword = ${param.searchKeyword})}" th:text="${page}"></a></li>
+                <li class="page-item"><strong class="page-link" th:if="${page == currentPage}" th:text="${page}"  ></strong></li>
+            </th:block>
+            <a th:if="${currentPage < endPage}" class="page-link" th:href="@{/webtoon/list(page=${currentPage}, searchKeyword = ${param.searchKeyword})}" aria-label="Next">
+                <span  aria-hidden="true">다음</span>
+            </a>
+        </ul>
+
+        <th:block sec:authorize="isAuthenticated()">
+        <a class="btn btn-primary float-end" th:href="@{/webtoon/insert}">웹툰 업로드</a>
+        </th:block>
+    </div>
+
+</body>
+</html>
