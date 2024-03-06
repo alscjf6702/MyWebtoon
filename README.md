@@ -37,5 +37,15 @@ JDK 17
 ![image](https://github.com/alscjf6702/MyWebtoonProject/assets/143998544/86671373-2cd2-45b7-aeec-9cda441718c3)
 ![image](https://github.com/alscjf6702/MyWebtoonProject/assets/143998544/8b934203-67b1-4e74-b4ab-f22941b7a98a)
 
+## 버튼 별 권한수정, 일반회원 정보수정
+![image](https://github.com/alscjf6702/MyWebtoonProject/assets/143998544/37b65402-1f1a-44c9-8605-1c26c704f2e1)
+![image](https://github.com/alscjf6702/MyWebtoonProject/assets/143998544/8915076b-eece-47c9-9bd1-3a08dae13b35)
+![image](https://github.com/alscjf6702/MyWebtoonProject/assets/143998544/e4b5cb3e-5c90-482d-b145-680e66523e4e)
+
+## 웹툰 게시판 목록( 그리드형 게시판, 웹툰 업로드, 웹툰 파일 없는 경우 X이미지 출력 )
+![image](https://github.com/alscjf6702/MyWebtoonProject/assets/143998544/7335e289-44db-41bc-8bb3-c8ba4fdd2152)
+
+## 웹툰 보기 ( 파일형태로 올려서 볼 수 있음 ) 
+![image](https://github.com/alscjf6702/MyWebtoonProject/assets/143998544/8b737018-675f-419f-bfe7-c9873dfd0362)
 
 
