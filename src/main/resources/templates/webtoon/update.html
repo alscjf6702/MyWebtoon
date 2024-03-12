@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <th:block th:replace="layouts/layout::css"/>
+    <link th:href="@{/css/bootstrap.min.css}" rel="stylesheet"/>
+
+</head>
+<body>
+
+<th:block th:replace="fragments/header :: header"/>
+
+<div class="layout">
+    <form th:action="@{/webtoon/update}" method="post"  class="gy-2 gx-3 align-items-center" enctype="multipart/form-data">
+        <input type="hidden" th:value="${webtoon.id}" name="id"/>
+        <div class="col-auto">
+            <label th:for="title">제목</label>
+            <input type="text" class="form-control" name="title" th:value="${webtoon.title}">
+            <br>
+        </div>
+        <div class="col-auto">
+            <label th:for="title">작성자</label>
+            <input type="text" class="form-control" th:value="${#authentication.getName()}" name="author" readonly>
+            <br>
+        </div>
+        <br>
+        <div class="col-auto">
+            <label th:for="content">내용</label>
+            <div class="input-group">
+                <textarea class="form-control" cols="30" rows="10" name="content" th:value="${webtoon.content}"></textarea>
+            </div>
+            <br>
+            <br>
+        </div>
+
+
+        <div class="col-auto">
+            <br>
+            <a th:href="@{/webtoon/detail(id=${webtoon.id})}" class="btn-primary btn float-end">취소</a>
+            <button type="submit" class="btn btn-primary float-end">등록</button>
+
+        </div>
+    </form>
+</div>
+</body>
+</html>

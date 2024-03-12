@@ -39,6 +39,7 @@ public class Webtoon extends BaseEntity{
         this.author = dto.getAuthor();
         this.content = dto.getContent();
         this.title = dto.getTitle();
+
     }
 
     public void setViews(int views) {

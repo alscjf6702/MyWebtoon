@@ -58,7 +58,7 @@ public class MemberService {
             existingMember.change(memberDto);
             memberRepository.save(existingMember);
         } else {
-            throw new RuntimeException("User not found");
+            throw new RuntimeException("유저 정보가 없습니다.");
         }
     }
 

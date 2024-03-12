@@ -67,9 +67,21 @@ public class WebtoonController {
     }
 
     @PostMapping("/delete")
-    public String delete(@RequestParam("id") Long id){
+    public String delete(@RequestParam("id") Long id) {
         webtoonService.delete(id);
         return "redirect:/webtoon/list";
+    }
+
+    @GetMapping("/update")
+    public String update(@RequestParam("id") Long id, Model model) {
+        model.addAttribute("webtoon", webtoonService.getDetail(id));
+        return "/webtoon/update";
+    }
+
+    @PostMapping("/update")
+    public String updatePost(WebtoonDTO dto, @RequestParam("id") Long id) {
+        webtoonService.update(dto);
+        return "redirect:/webtoon/detail?id=" + id;
     }
 }
 
