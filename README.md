@@ -48,4 +48,13 @@ JDK 17
 ## 웹툰 보기 ( 파일형태로 올려서 볼 수 있음 ) 
 ![image](https://github.com/alscjf6702/MyWebtoonProject/assets/143998544/8b737018-675f-419f-bfe7-c9873dfd0362)
 
+## 굿즈 판매 게시판 (굿즈 판매 등록, javascript통해 사진 미리보기)
+![image](https://github.com/alscjf6702/MyWebtoonProject/assets/143998544/343cd43e-5ea3-4f7d-9efe-2745db51b61b)
+
+## 굿즈 판매 게시글 (굿즈 상품 판매글 detail)
+![image](https://github.com/alscjf6702/MyWebtoonProject/assets/143998544/327316c8-566a-485a-b906-fb2940ea72a2)
+
+## 굿즈 판매 게시글 리스트 
+![image](https://github.com/alscjf6702/MyWebtoonProject/assets/143998544/b265bfc6-1a57-4cbd-bc7b-39b94b45c894)
+
 
