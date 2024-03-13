@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <th:block th:replace="layouts/layout::css"/>
+    <th:block th:replace="fragments/header :: header"/>
+    <link rel="stylesheet" th:href="@{/css/bootstrap.min.css}"/>
+    <style>
+    .sellProductInfo{
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+    }
+    </style>
+
+</head>
+
+<body>
+
+<div class="container">
+    <form th:action="@{/goods/regProduct}" method="post" enctype="multipart/form-data">
+        <div class="sellProductInfo">
+            <label th:for="productName">판매물품</label>
+            <input type="text" th:name="productName" /><br>
+
+            <label th:for="seller">판매자</label>
+            <input type="text" th:name="seller" th:value="${#authentication.principal.username}" readonly /><br>
+
+            <label th:for="price">판매금액</label>
+            <input type="text" th:name="price"/><br>
+
+            <label th:for="productsLeft">수량</label>
+            <input type="text" th:name="productsLeft"/><br>
+
+            <label th:for="productInfo">물품설명</label>
+            <input type="text" th:name="productInfo"/><br>
+
+            <div id="preview" style="display:flex; flex-wrap:wrap; gap:10px;"></div>
+            <label th:for="file">물품 사진 등록</label>
+            <input type="file" multiple="multiple" name="file" class="file">
+            <input type="file" multiple="multiple" class="file" name="file">
+        </div>
+        <button type="submit" class="btn btn-dark float-end">물품 등록</button>
+    </form>
+</div>
+
+<script>
+    document.querySelectorAll('.file').forEach(function(inputElement) {
+        inputElement.addEventListener('change', function(e) {
+            var preview = document.getElementById('preview');
+
+            // Remove all existing previews
+            while (preview.firstChild) {
+                preview.firstChild.remove();
+            }
+
+            // Convert file list to array and create previews
+            Array.from(e.target.files).forEach(function(file) {
+                var img = document.createElement('img');
+                img.style.width = '200px';
+                img.src = URL.createObjectURL(file);
+                img.onload = function() {
+                    URL.revokeObjectURL(img.src);
+                }
+                preview.appendChild(img);
+            });
+        });
+    });
+
+
+</script>
+
+</body>
+</html>

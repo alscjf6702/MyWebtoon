@@ -4,34 +4,53 @@ import com.siot.IamportRestClient.IamportClient;
 import com.siot.IamportRestClient.exception.IamportResponseException;
 import com.siot.IamportRestClient.response.IamportResponse;
 import com.siot.IamportRestClient.response.Payment;
+import jakarta.persistence.Id;
+import lombok.AllArgsConstructor;
+import lombok.NoArgsConstructor;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.ResponseBody;
+import org.springframework.web.bind.annotation.*;
+import org.springframework.web.multipart.MultipartFile;
+import org.webtoon.dto.GoodsDTO;
 import org.webtoon.service.GoodsService;
 
 import java.io.IOException;
 
 @Controller
-@RequiredArgsConstructor
 public class GoodsController {
 
     private final IamportClient iamportClient;
 
-    private GoodsService goodsService;
+    private final GoodsService goodsService;
 
-    public GoodsController(){
-        this.iamportClient = new IamportClient("",
-                "");
+    public GoodsController(GoodsService goodsService){
+        this.goodsService = goodsService;
+        this.iamportClient = new IamportClient("2522366255172456",
+                "mQVzAT929a7ucZd6PJvKdKtkDPE4CNHHjxkYzxP6iXB2miX7Sc2ZWFLdWFTV61Ne39zZxCUnyiYz9Bfw");
     }
 
     @GetMapping("/goods/list")
     public String list(Model model){
         model.addAttribute("goods", goodsService.list());
         return "/goods/list";
+    }
+
+    @GetMapping("/goods/detail")
+    public String detail(Model model, GoodsDTO dto){
+        model.addAttribute("detail", goodsService.getDetail(dto.getId()));
+        return "/goods/detail";
+    }
+
+    @GetMapping("/goods/productSell")
+    public String regSellProduct(){
+        return "/goods/productSell";
+    }
+
+    @PostMapping("/goods/regProduct")
+    public String regSellProductPost(GoodsDTO dto, @RequestParam("file") MultipartFile file) throws IOException {
+        goodsService.insertProduct(dto, file);
+        return "redirect:/goods/list";
     }
 
 

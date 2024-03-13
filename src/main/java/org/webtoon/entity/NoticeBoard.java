@@ -34,7 +34,6 @@ public class NoticeBoard extends BaseEntity {
 
     private String fileName;
 
-
     private String filePath;
 
     public void change( String content) {

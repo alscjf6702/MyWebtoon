@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html lang="en"
+      xmlns:th="http://www.thymeleaf.org" xmlns:sec="http://www.thymeleaf.org/extras/spring-security">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <th:block th:replace="fragments/header :: header"/>
+    <th:block th:replace="layouts/layout :: css"/>
+    <link rel="stylesheet" th:href="@{/css/bootstrap.min.css}">
+
+</head>
+<body>
+
+<div class="container">
+    <div class="imgContainer">
+    <th:block th:if="${detail.fileName == null }">
+    <img src="/files/noImg.jpg">
+    </th:block>
+    <th:block th:if="${detail.fileName != null }">
+        <img th:src="@{/files/{fileName}(fileName=${detail.fileName})}">
+    </th:block>
+    </div>
+
+    <div class="infoContainer">
+        물품번호 : [[${detail.productId}]]<br><br>
+        [[${detail.productName}]]<br>
+        [[${detail.productInfo}]]<br>
+        <hr>
+        판매가&nbsp;&nbsp;&nbsp;&nbsp;
+        \<th:block th:text="${#numbers.formatInteger(detail.price,3,'COMMA')}"/><br>
+        판매자&nbsp;&nbsp;&nbsp;&nbsp;
+        <th:block th:text="${detail.seller}"/>
+
+
+        <hr>
+
+        재고 &nbsp;&nbsp;&nbsp;&nbsp; [[${detail.productsLeft}]]<br>
+        구매수량 &nbsp;&nbsp;&nbsp;&nbsp;
+        <label for="buyCount">
+            <select name="buyCount" id="buyCount" >
+                <option th:each="productsLeft :${#numbers.sequence(0,detail.productsLeft)}" th:value="${productsLeft}" th:text="${productsLeft}"></option>
+            </select>
+        </label>
+        <hr>
+        구매수량: <span id="buyCountText">0</span><br>
+        총 가격 : \<span id="totalPrice">0</span>
+
+    </div>
+    <div sec:authorize="isAuthenticated()">
+        <th:block th:if="${#authentication.principal.username == detail.seller}">
+            <a class="btn btn-success float-end ms-2" th:href="@{/goods/update(id=${detail.id})}">상품수정</a>
+        </th:block>
+    </div>
+    <a th:href="@{/goods/list}" class="btn btn-success float-end">상품목록</a>
+    <button type="submit" class="btn btn-dark float-end me-2">구매하기</button>
+    <th:block sec:authorize=""></th:block>
+
+
+</div>
+
+
+<script>
+
+    document.getElementById("buyCount").addEventListener("change", function() {
+        var buyCount = this.value; // 선택한 구매수량
+        var price = parseInt([[${detail.price}]]); // 판매가
+
+        var totalPrice = buyCount * price; // 총 가격 계산
+
+        // 총 가격을 3자리 콤마 형태로 변경하여 총 가격 영역의 텍스트로 설정
+        document.getElementById("totalPrice").innerText = totalPrice.toLocaleString();
+
+        // buyCount 영역의 텍스트로 구매수량 설정
+        document.getElementById("buyCountText").innerText = buyCount;
+    });
+
+</script>
+
+</body>
+</html>

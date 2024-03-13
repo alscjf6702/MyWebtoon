@@ -28,7 +28,8 @@ class GoodsRepositoryTests {
         Goods goods = Goods.builder()
                 .productsLeft(30)
                 .productName("도둑고양이")
-                .amount(5000000)
+                .seller("awdawd")
+                .price(5000000)
                 .productId(product_id)
                 .build();
 

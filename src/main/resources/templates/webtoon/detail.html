@@ -19,13 +19,13 @@
         내용 : [[${webtoon.content}]] <br></th:block>
     작성자 : [[${webtoon.author}]] <br>
     <div sec:authorize="isAuthenticated()">
-    <th:block th:if="${#authentication.principal.username == webtoon.author}">
-        <a th:href="@{/webtoon/update(id=${webtoon.id})}" class="btn btn-primary">수정</a>
-    </th:block>
-    <th:block th:if="${#authentication.principal.username == webtoon.author || #authentication.principal.username == 'admin'}">
+        <th:block th:if="${#authentication.principal.username == webtoon.author}">
+            <a th:href="@{/webtoon/update(id=${webtoon.id})}" class="btn btn-primary">수정</a>
+        </th:block>
+        <th:block th:if="${#authentication.principal.username == webtoon.author || #authentication.principal.username == 'admin'}">
 
-        <button type="submit" class="btn btn-primary">삭제</button>
-    </th:block>
+            <button type="submit" class="btn btn-primary">삭제</button>
+        </th:block>
         <a th:href="@{/webtoon/list}" class="btn btn-primary">목록</a>
     </div>
 

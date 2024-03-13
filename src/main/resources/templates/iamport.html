@@ -13,7 +13,7 @@ xmlns:th="http://www.thymeleaf.org"
 
         function requestPay() {
             IMP.request_pay({
-                pg: "{html5_inicis}.{}",
+                pg: "{html5_inicis}.{store-6b3e3cf3-2e34-43f1-9888-97e1f93e9654}",
                 pay_method: "card",
                 merchant_uid: [[${goods.uid}]],   // 주문번호
                 name: [[${goods.productName}]],
