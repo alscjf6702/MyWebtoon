@@ -27,7 +27,7 @@ JDK 17
 7.[📹 시연 영상](#시연-영상)<br>
 8.[💧 프로젝트 소감](#프로젝트-소감)<br>
 
-## 회원가입( Id중복 여부 및 기타 유효성 검사 진행)
+## 📝 회원가입( Id중복 여부 및 기타 유효성 검사 진행)
 ![image](https://github.com/alscjf6702/MyWebtoonProject/assets/143998544/3c3b7841-96f2-40ce-bc90-16308e1737f9)
 ![image](https://github.com/alscjf6702/MyWebtoonProject/assets/143998544/b8129c41-5a20-4da7-87d9-47be5ace8650)
 
