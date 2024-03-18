@@ -57,4 +57,14 @@ JDK 17
 ## 굿즈 판매 게시글 리스트 
 ![image](https://github.com/alscjf6702/MyWebtoonProject/assets/143998544/b265bfc6-1a57-4cbd-bc7b-39b94b45c894)
 
+## 굿즈 결제 (다날portOne API 사용)
+![image](https://github.com/alscjf6702/MyWebtoon/assets/143998544/57b5c786-fa32-488d-a415-2764b30f1037)
+![image](https://github.com/alscjf6702/MyWebtoon/assets/143998544/10ded425-ee5b-4ade-90e9-7f6b202b6694)
+![image](https://github.com/alscjf6702/MyWebtoon/assets/143998544/673fff5b-5229-406c-8cf3-4dfdb7b7f519)
+![image](https://github.com/alscjf6702/MyWebtoon/assets/143998544/06851972-1c29-45a0-b8b7-7e2da20de650)
+![image](https://github.com/alscjf6702/MyWebtoon/assets/143998544/4525ca70-9156-42b3-9650-21753d4ec162)
+![image](https://github.com/alscjf6702/MyWebtoon/assets/143998544/d2f1acf5-0d69-4ff4-a8c7-564ba67250b1)
+
+
+
 
