@@ -16,9 +16,9 @@ JDK 17
        <img src="https://img.shields.io/badge/Spring Security-6DB33F?style=plastic&logo=Spring Security&logoColor=white">
        <img src="https://img.shields.io/badge/bootstrap-7952B3?style=plastic&logo=bootstrap&logoColor=white"/>
 
-#목차
+# 목차
 
-1.[📝 회원가입](##-회원가입)<br>
+1.[📝 회원가입](##회원가입)<br>
 2.[🎯 개발환경](#개발-환경)<br>
 3.[👯 조원](#조원)<br>
 4.[📌 기능 요구사항](#기능-요구사항)<br>
