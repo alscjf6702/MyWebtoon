@@ -108,8 +108,9 @@ PortOne API (PG결제)<br>
   <summary>
     📝 굿즈 판매 게시판 (굿즈 판매 등록, javascript통해 사진 미리보기)
   </summary>
+   
+![image](https://github.com/alscjf6702/MyWebtoon/assets/143998544/9cbf75c9-c916-4e8e-812a-fc1711985880)
 
-![image](https://github.com/alscjf6702/MyWebtoonProject/assets/143998544/343cd43e-5ea3-4f7d-9efe-2745db51b61b)
 </details>
 
 
