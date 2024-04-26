@@ -4,6 +4,7 @@
     <meta charset="UTF-8">
     <title>회원가입</title>
     <th:block th:replace="layouts/layout::css"/>
+    <link rel="stylesheet" th:href="@{/css/bootstrap.min.css}"/>
     <style>
 
         form{
@@ -12,55 +13,54 @@
             margin-top: 20px;
         }
 
-        .button{
-            background-color: #0a53be;
-            border: none;
-            color: white;
-            padding: 8px 17px;
-            text-align: center;
-            text-decoration: none;
-            display: inline-block;
-            border-radius: 15px;
-            font-size: 16px;
-            margin: 5px 1px;
-            cursor: pointer;
-        }
+        /*.button{*/
+        /*    background-color: #0a53be;*/
+        /*    border: none;*/
+        /*    color: white;*/
+        /*    padding: 8px 17px;*/
+        /*    text-align: center;*/
+        /*    text-decoration: none;*/
+        /*    display: inline-block;*/
+        /*    border-radius: 15px;*/
+        /*    font-size: 16px;*/
+        /*    margin: 5px 1px;*/
+        /*    cursor: pointer;*/
+        /*}*/
     </style>
 </head>
 
 <body>
-<div class="" th:replace="fragments/header :: header"></div>
-
-<form th:action="@{/member/regMember}" th:object="${memberDTO}" method="post">
-    <div class="alert alert-danger" role="alert" th:if="${#fields.hasAnyErrors()}">
-        <div th:each="err : ${#fields.allErrors()}" th:text="${err}"/>
-    </div>
-    <div>
-        <label th:for="userName">이름</label>
-        <input type="text" th:field="*{userName}"><br>
-    </div>
-    <div>
-        <label th:for="userId">아이디</label>
-        <input type="text" th:field="*{userId}">
-    </div>
-    <div>
-        <label th:for="password">암호</label>
-        <input type="password" th:field="*{password}">
-    </div>
-    <div>
-        <label th:for="email">이메일</label>
-        <input type="email" th:field="*{email}" >
-    </div>
-    <div>
-        <label th:for="phoneNumber">전화번호</label>
-        <input type="text" th:field="*{phoneNumber}" >
-    </div>
-    <button type="submit" class="button" value="회원등록">회원가입</button>
-    <a th:href="@{/member/list}" class="button">목록</a>
-
-
-</form>
-
+<div th:replace="fragments/header :: header"></div>
+<div class="container">
+    <form th:action="@{/member/regMember}" th:object="${memberDTO}" method="post">
+        <div class="alert alert-danger" role="alert" th:if="${#fields.hasAnyErrors()}">
+            <div th:each="err : ${#fields.allErrors()}" th:text="${err}"/>
+        </div>
+        <div>
+            <label th:for="userName">이름</label>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+            <input class="border border-primary mb-2 border-3 rounded" type="text" th:field="*{userName}"><br>
+        </div>
+        <div>
+            <label th:for="userId">아이디</label>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+            <input class="border border-primary mb-2 border-3 rounded" type="text" th:field="*{userId}">
+        </div>
+        <div>
+            <label th:for="password">암호</label>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+            <input class="border border-primary mb-2 border-3 rounded" type="password" th:field="*{password}">
+        </div>
+        <div>
+            <label th:for="email">이메일</label>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+            <input class="border border-primary mb-2 border-3 rounded" type="email" th:field="*{email}" >
+        </div>
+        <div>
+            <label th:for="phoneNumber">전화번호</label>&nbsp;&nbsp;&nbsp;
+            <input class="border border-primary mb-2 border-3 rounded" type="text" th:field="*{phoneNumber}" >
+        </div>
+        <a th:href="@{/member/list}" class="btn btn-success float-end">로그인</a>
+        <button type="submit" class="btn btn-dark float-end me-3" value="회원등록">회원등록</button>
+        <br>
+    </form>
+</div>
 
 <div th:replace="fragments/footer :: footer"></div>
 

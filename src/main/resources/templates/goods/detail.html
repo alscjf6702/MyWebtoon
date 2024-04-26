@@ -7,27 +7,37 @@
     <th:block th:replace="fragments/header :: header"/>
     <th:block th:replace="layouts/layout :: css"/>
     <link rel="stylesheet" th:href="@{/css/bootstrap.min.css}">
+    <script src="https://cdn.iamport.kr/v1/iamport.js"></script>
+    <link rel="stylesheet" th:href="@{/css/goodsDetail.css}">
+
+    <script>
+        IMP.init('imp63736637');
+
+    </script>
+
 
 </head>
 <body>
 
-<div class="container">
+<div class="container" >
     <div class="imgContainer">
     <th:block th:if="${detail.fileName == null }">
-    <img src="/files/noImg.jpg">
+    <img style="width:200px;height: auto;" src="/files/noImg.jpg">
     </th:block>
     <th:block th:if="${detail.fileName != null }">
-        <img th:src="@{/files/{fileName}(fileName=${detail.fileName})}">
+        <img style="max-width: 500px; height: auto;" th:src="@{/files/{fileName}(fileName=${detail.fileName})}">
     </th:block>
     </div>
 
     <div class="infoContainer">
+
         물품번호 : [[${detail.productId}]]<br><br>
-        [[${detail.productName}]]<br>
-        [[${detail.productInfo}]]<br>
+        물품명 : [[${detail.productName}]]<br>
+        물품 설명 <br>[[${detail.productInfo}]]<br>
+        <button class="border-0 bg-transparent" id="likeBtn" onclick="">👍</button>
         <hr>
         판매가&nbsp;&nbsp;&nbsp;&nbsp;
-        \<th:block th:text="${#numbers.formatInteger(detail.price,3,'COMMA')}"/><br>
+        <span id="amount" th:text="${#numbers.formatInteger(detail.price,3,'COMMA')} + '원'"/><br>
         판매자&nbsp;&nbsp;&nbsp;&nbsp;
         <th:block th:text="${detail.seller}"/>
 
@@ -43,23 +53,30 @@
         </label>
         <hr>
         구매수량: <span id="buyCountText">0</span><br>
-        총 가격 : \<span id="totalPrice">0</span>
+        총 가격 : <span id="totalPrice">0원</span>
 
     </div>
+    <form th:action="@{/goods/delete(id=${detail.id})}" method="post">
     <div sec:authorize="isAuthenticated()">
         <th:block th:if="${#authentication.principal.username == detail.seller}">
-            <a class="btn btn-success float-end ms-2" th:href="@{/goods/update(id=${detail.id})}">상품수정</a>
+            <a class="btn btn-success float-end ms-2" th:href="@{/goods/productUpdate(id=${detail.id})}">상품수정</a>
         </th:block>
+        <th:block th:if="${#authentication.principal.username == detail.seller || #authentication.principal.username == 'admin'}">
+            <button type="submit" class="btn btn-danger float-end ms-2" onclick="return confirm('상품을 정말로 삭제하시겠습니까?')">상품삭제</button>
+        </th:block>
+
     </div>
     <a th:href="@{/goods/list}" class="btn btn-success float-end">상품목록</a>
-    <button type="submit" class="btn btn-dark float-end me-2">구매하기</button>
-    <th:block sec:authorize=""></th:block>
-
+    <th:block sec:authorize="isAuthenticated()">
+        <button type="button" class="btn btn-dark float-end me-2" onclick="payment()">구매하기</button>
+    </th:block>
+    </form>
 
 </div>
 
 
 <script>
+
 
     document.getElementById("buyCount").addEventListener("change", function() {
         var buyCount = this.value; // 선택한 구매수량
@@ -68,11 +85,61 @@
         var totalPrice = buyCount * price; // 총 가격 계산
 
         // 총 가격을 3자리 콤마 형태로 변경하여 총 가격 영역의 텍스트로 설정
-        document.getElementById("totalPrice").innerText = totalPrice.toLocaleString();
+        document.getElementById("totalPrice").innerText = totalPrice.toLocaleString() + '원';
 
         // buyCount 영역의 텍스트로 구매수량 설정
         document.getElementById("buyCountText").innerText = buyCount;
+
+        updateTotalPriceForPayment(totalPrice);
     });
+
+    function updateTotalPriceForPayment(totalPrice) {
+        // 여기서 totalPrice 변수를 사용하여 결제 요청을 업데이트
+        console.log("총 가격 : " + totalPrice);
+    }
+
+
+    function payment() {
+
+        let uuid = self.crypto.randomUUID();    //uuid객체
+        var productNumber = "[[${detail.productId}]]";  //상품번호 불러오기
+        var orderNum = uuid + "_"+ productNumber;   //merchant_uid 에 uuid 지정
+
+        var productName = "[[${detail.productName}]]";  //상품명 불러오기
+
+        var buyCount = parseInt(document.getElementById("buyCount").value); // 선택한 구매수량을 숫자로 변환
+        var price = parseInt(document.getElementById("amount").innerText.replace(/,/g, '')); // 판매가를 숫자로 변환
+
+        console.log("총 가격 : " + totalPrice)
+        var totalPrice = buyCount * price; // 총 가격 계산
+
+        console.log("상품 가격 : " + price)
+        console.log("구매수량 : " + buyCount)
+
+        if (totalPrice === 0) {
+            alert("구매 수량을 선택해주세요.")
+        }
+
+        IMP.request_pay({
+            pg: 'danal_tpay',
+            pay_method: 'card',
+            merchant_uid: orderNum, // 상점에서 생성한 고유 주문번호
+            name: productName,
+            amount: totalPrice,
+            // buyer_email: 'test@portone.io',
+            // buyer_name: '구매자이름',
+            // buyer_tel: '010-1234-5678',
+            // buyer_addr: '서울특별시 강남구 삼성동',
+            // buyer_postcode: '123-456',
+        }, function (rsp) {
+            if (rsp.success) {
+                console.log(rsp)
+            } else {
+                console.log(rsp)
+            }
+        });
+    }
+
 
 </script>
 

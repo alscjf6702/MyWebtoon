@@ -80,16 +80,17 @@ public class GoodsService {
 
     public void updateProduct(GoodsDTO dto){
 
-        Goods existGoods = goodsRepository.findByProductId(dto.getProductId());
+        Goods goods = Goods.builder()
+                .productsLeft(dto.getProductsLeft())
+                .productName(dto.getProductName())
+                .seller(dto.getSeller())
+                .productInfo(dto.getProductInfo())
+                .price(dto.getPrice())
+                .build();
 
-        if (existGoods != null) {
-            existGoods.updateProduct(dto);
-            goodsRepository.save(existGoods);
-        }else{
-            throw new RuntimeException("굿즈 정보가 없습니다.");
-        }
+        goodsRepository.save(goods);
+
     }
-
 
 }
 

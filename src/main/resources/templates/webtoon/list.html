@@ -5,35 +5,9 @@
     <title>Title</title>
     <th:block th:replace="layouts/layout::css"/>
     <link th:href="@{/css/bootstrap.min.css}" rel="stylesheet"/>
-
+    <link rel="stylesheet" th:href="@{/css/lists.css}"/>
 </head>
-<style>
-    .layout{
-        width: 70%;
-        margin: 0 auto;
-        margin-top: 40px;
-    }
 
-    .write-btn{
-        margin-bottom: 10px;
-    }
-
-    img{
-        width: 150px;
-        height: 130px;
-    }
-
-    .border{
-        border: 1px solid black;
-        padding: 10px;
-        background-color: #f2f2f2;
-        border-radius: 5px;
-        box-shadow: 2px 2px 5px rgba(0, 0, 0, 0.2);
-    }
-
-
-
-</style>
 <body>
 
     <th:block th:replace="fragments/header :: header"/>

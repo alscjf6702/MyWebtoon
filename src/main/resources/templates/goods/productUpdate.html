@@ -8,11 +8,11 @@
     <link rel="stylesheet" th:href="@{/css/bootstrap.min.css}"/>
     <link rel="stylesheet" th:href="@{/css/productSell.css}"/>
     <style>
-    .sellProductInfo{
-        display: flex;
-        flex-direction: column;
-        align-items: center;
-    }
+        .sellProductInfo{
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+        }
     </style>
 
 </head>
@@ -20,26 +20,27 @@
 <body>
 
 <div class="container">
-    <form th:action="@{/goods/regProduct}" method="post" enctype="multipart/form-data">
+    <form th:action="@{/goods/productUpdate}" method="post" enctype="multipart/form-data">
         <div class="sellProductInfo">
             <label th:for="productName">판매물품</label>
-            <input type="text" th:name="productName" /><br>
+            <input type="text" th:name="productName" th:value="${detail.productName}" /><br>
 
             <label th:for="seller">판매자</label>
-            <input type="text" th:name="seller" th:value="${#authentication.principal.username}" readonly /><br>
+            <input type="text" th:name="seller" th:value="${#authentication.principal.username}" readonly/><br>
 
             <label th:for="price">판매금액</label>
-            <input type="text" th:name="price"/><br>
+            <input type="text" th:name="price" th:value="${detail.price}"/><br>
 
             <label th:for="productsLeft">수량</label>
-            <input type="text" th:name="productsLeft"/><br>
+            <input type="text" th:name="productsLeft" th:value="${detail.productsLeft}" /><br>
 
             <label th:for="productInfo">물품설명</label>
-            <input type="text" th:name="productInfo"/><br>
+            <input type="text" th:name="productInfo" th:value="${detail.productInfo}" /><br>
 
             <div id="preview" style="display:flex; flex-wrap:wrap; gap:10px;"></div>
             <label th:for="file">물품 사진 등록</label>
             <input type="file" multiple="multiple" name="file" class="file">
+
         </div>
         <a th:href="@{/goods/list}" class="btn btn-success float-end">상품 목록</a>
         <button type="submit" class="btn btn-dark float-end me-2">물품 등록</button>

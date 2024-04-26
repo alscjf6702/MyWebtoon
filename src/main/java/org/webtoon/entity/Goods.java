@@ -51,7 +51,6 @@ public class Goods {
         this.productName = dto.getProductName();
         this.price = dto.getPrice();
 //        this.merchant_uid = dto.getMerchant_uid();
-        this.likes = dto.getLikes();
         this.productsLeft = dto.getProductsLeft();
         this.productInfo = dto.getProductInfo();
     }

@@ -30,7 +30,7 @@ public class WebtoonController {
 
     @GetMapping("/list")
     public String getList(Model model,
-                          @PageableDefault(page = 0, size = 10, sort = "id", direction = Sort.Direction.DESC) Pageable pageable) {
+                          @PageableDefault(page = 0, size = 9, sort = "id", direction = Sort.Direction.DESC) Pageable pageable) {
 //        model.addAttribute("webtoon", webtoonService.getList(pageable));
         Page<Webtoon> list = null;
         list = webtoonService.getList(pageable);

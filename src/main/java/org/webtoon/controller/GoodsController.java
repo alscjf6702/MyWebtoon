@@ -24,26 +24,26 @@ public class GoodsController {
 
     private final GoodsService goodsService;
 
-    public GoodsController(GoodsService goodsService){
+    public GoodsController(GoodsService goodsService) {
         this.goodsService = goodsService;
         this.iamportClient = new IamportClient("2522366255172456",
                 "mQVzAT929a7ucZd6PJvKdKtkDPE4CNHHjxkYzxP6iXB2miX7Sc2ZWFLdWFTV61Ne39zZxCUnyiYz9Bfw");
     }
 
     @GetMapping("/goods/list")
-    public String list(Model model){
+    public String list(Model model) {
         model.addAttribute("goods", goodsService.list());
         return "/goods/list";
     }
 
     @GetMapping("/goods/detail")
-    public String detail(Model model, GoodsDTO dto){
+    public String detail(Model model, GoodsDTO dto) {
         model.addAttribute("detail", goodsService.getDetail(dto.getId()));
         return "/goods/detail";
     }
 
     @GetMapping("/goods/productSell")
-    public String regSellProduct(){
+    public String regSellProduct() {
         return "/goods/productSell";
     }
 
@@ -55,7 +55,7 @@ public class GoodsController {
 
 
     @GetMapping("/iamport")
-    public String iamport(){
+    public String iamport() {
         return "/iamport";
     }
 
@@ -68,7 +68,24 @@ public class GoodsController {
     }
 
 
+    @GetMapping("/goods/productUpdate")
+    public String productUpdate(@RequestParam("id") Long id , Model model){
+        model.addAttribute("detail", goodsService.getDetail(id));
+        return "/goods/productUpdate";
+    }
 
+    @PostMapping("/goods/productUpdate")
+    public String productUpdatePost(GoodsDTO dto){
 
+        goodsService.updateProduct(dto);
+
+        return "redirect:/goods/list";
+    }
+
+    @PostMapping("/goods/delete")
+    public String deleteProduct(@RequestParam("id") Long id){
+        goodsService.deleteProduct(id);
+        return "redirect:/goods/list";
+    }
 }
 

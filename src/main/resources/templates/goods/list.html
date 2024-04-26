@@ -3,41 +3,16 @@
 <head>
     <meta charset="UTF-8">
     <title>Title</title>
-    <th:block th:replace="fragments/header :: header"/>
+
     <th:block th:replace="layouts/layout :: css"/>
     <link th:href="@{/css/bootstrap.min.css}" rel="stylesheet"/>
-
-    <style>
-    .layout{
-        width: 70%;
-        margin: 0 auto;
-        margin-top: 40px;
-    }
-
-    .write-btn{
-        margin-bottom: 10px;
-    }
-
-    img{
-        width: 150px;
-        height: 130px;
-    }
-
-    .border{
-        border: 1px solid black;
-        padding: 10px;
-        background-color: #f2f2f2;
-        border-radius: 5px;
-        box-shadow: 2px 2px 5px rgba(0, 0, 0, 0.2);
-    }
+    <link rel="stylesheet" th:href="@{/css/lists.css}"/>
 
 
-
-</style>
 </head>
 
 <body>
-
+<th:block th:replace="fragments/header :: header"/>
 <div class="container text-center ">
     <div class="row">
         <div th:each="list : ${goods}" class="col-md-2 my-4 py-3 mx-3 border ">
@@ -46,7 +21,7 @@
                     <img th:src="${list.filePath}" th:alt="${list.productName}">
                 </th:block>
                 <th:block th:if="${list.fileName == null}">
-                    <img src="/files/noImg.jpg" alt="그림이 없는 웹툰">
+                    <img src="/files/noImg.jpg" alt="사진정보가 없는 굿즈">
                 </th:block>
                 <div class="text-dark align-bottom">
                    [[${list.productName}]]<br>
