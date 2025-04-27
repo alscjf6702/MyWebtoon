@@ -2,19 +2,19 @@
 
 ## 📌 프로젝트 소개
 - 사용자가 직접 웹툰을 업로드하고, 웹툰 굿즈를 판매할 수 있는 Spring Boot 기반 웹 플랫폼입니다.
-- 로그인, 회원가입, 게시판, 굿즈 판매 기능을 구현하였으며, 포트원(PG) 결제 연동을 준비 중입니다.
+- 로그인, 회원가입, 게시판, 굿즈 판매 기능, 포트원(PG) 결제 연동을 구현했습니다.
 
 ## 🛠 사용 기술
 - Backend: Java, Spring Boot, Spring Security, JPA, MySQL
 - Frontend: Thymeleaf, HTML5, CSS3, Bootstrap
-- DevOps: AWS EC2, S3 (배포 예정)
+- DevOps: AWS EC2, S3
 
 ## 🧩 주요 기능
 - 회원가입 및 로그인 (Spring Security 적용)
 - 웹툰 등록, 수정, 삭제
 - 굿즈 상품 등록 및 관리
-- 장바구니 및 결제 기능(구현 예정)
-- 관리자 페이지 (추가 예정)
+- 장바구니 및 결제 기능
+- 관리자 페이지
 
 ## 🗂 프로젝트 구조
 com.mywebtoon ├── config ├── controller ├── domain ├── repository ├── service └── templates / static
