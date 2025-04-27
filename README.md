@@ -1,32 +1,28 @@
+# MyWebtoon (웹툰 플랫폼 프로젝트)
 
+## 📌 프로젝트 소개
+- 사용자가 직접 웹툰을 업로드하고, 웹툰 굿즈를 판매할 수 있는 Spring Boot 기반 웹 플랫폼입니다.
+- 로그인, 회원가입, 게시판, 굿즈 판매 기능을 구현하였으며, 포트원(PG) 결제 연동을 준비 중입니다.
 
-<br>
-springboot 3.2.2
-<br>
-JDK 17
-<br>
-   <img src="https://img.shields.io/badge/springboot-6DB33F?style=plastic&logo=springboot&logoColor=white"/>
-   <img src="https://img.shields.io/badge/css3-1572B6?style=plastic&logo=css3&logoColor=white"/>
-    <img src="https://img.shields.io/badge/HTML5-E34F26?style=plastic&logo=HTML5&logoColor=white"/>
-    <img src="https://img.shields.io/badge/Thymeleaf-005F0F?style=plastic&logo=Thymeleaf&logoColor=white">
-    <img src="https://img.shields.io/badge/IntelliJ IDEA-000000?style=plastic&logo=IntelliJ IDEA&logoColor=white">
-     <img src="https://img.shields.io/badge/MySQL-4479A1?style=plastic&logo=MySQL&logoColor=white"/>
-       <img src="https://img.shields.io/badge/git-F05032?style=plastic&logo=git&logoColor=white">
-       <img src="https://img.shields.io/badge/Spring Security-6DB33F?style=plastic&logo=Spring Security&logoColor=white">
-       <img src="https://img.shields.io/badge/bootstrap-7952B3?style=plastic&logo=bootstrap&logoColor=white"/>
-<br>
-Used API{<br>
-PortOne API (PG결제)<br>
-}
-<br>
+## 🛠 사용 기술
+- Backend: Java, Spring Boot, Spring Security, JPA, MySQL
+- Frontend: Thymeleaf, HTML5, CSS3, Bootstrap
+- DevOps: AWS EC2, S3 (배포 예정)
 
-# 목차
+## 🧩 주요 기능
+- 회원가입 및 로그인 (Spring Security 적용)
+- 웹툰 등록, 수정, 삭제
+- 굿즈 상품 등록 및 관리
+- 장바구니 및 결제 기능(구현 예정)
+- 관리자 페이지 (추가 예정)
 
-구현<br>
-회원가입,회원정보,로그인, 비밀번호 재설정, 웹툰 게시판, 굿즈 판매 게시판, 결제사 API연동<br>
+## 🗂 프로젝트 구조
+com.mywebtoon ├── config ├── controller ├── domain ├── repository ├── service └── templates / static
 
-미구현<br>
-<br>
+## 📈 개발 후기
+- Spring Security를 통한 사용자 인증/인가를 처음 적용하며 보안에 대한 이해도를 높였습니다.
+- AWS 환경에서 서버 배포를 경험하며 클라우드 인프라 운영에 대한 기본기를 다졌습니다.
+
 
 <details>
   <summary>
